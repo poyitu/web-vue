@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="isShow">{{msg}}</div>
+      <template v-if="isShow">
+        <div>hello qinhaha</div>
+      </template>
+      <div v-else>tutubo</div>
+
+      <template v-if="loginType=='username'">
+        <label>用户名</label>
+        <input type="text" placeholder="请输入用户名" />
+      </template>
+      <template v-else>
+        <label>用户名</label>
+        <input type="text" placeholder="请输入邮箱" />
+      </template>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          msg: "kjaja",
+          isShow: false,
+          gender: 0,
+          loginType: "username",
+        },
+      });
+    </script>
+  </body>
+</html>
