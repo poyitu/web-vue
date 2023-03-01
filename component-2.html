@@ -10,6 +10,13 @@
   <body>
     <div id="app">
       <javaboy></javaboy>
+      <myblog @sayHello="hello"
+        v-for="(blog,index) in blogs"
+        :title="blog.title" 
+        :date="blog.date" 
+        :author="blog.author"
+      ></myblog>
+      
     </div>
 
     <script>
@@ -18,13 +25,33 @@
         data() {
           return { counter: 0 };
         },
-        template: "<button v-on:click='counter++'>hello  {{counter}}</button>",
+        template:
+          "<button v-on:click='counter++'>hello  {{counter>10?'good':counter}}</button>",
+      });
+      Vue.component("myblog", {
+        props: ["title", "date", "author"],
+        template:
+          "<div>" +
+          "<div>{{title}}</div>" +
+          "<div>{{date}}--{{author}}</div>" +
+          "<button @click='$emit(\"sayHello\",title)'>click</button>" +
+          "</div>",
       });
       var app = new Vue({
         el: "#app",
         data: {
           message: "hello qihaha",
-          hello: "vue",
+          
+          blogs: [
+            { title: "标题一", date: "2222-10-22", author: "qinhaha" },
+            { title: "标题2", date: "2222-10-22", author: "bobo" },
+            { title: "标题3", date: "2222-10-22", author: "xixi" },
+          ],
+        },
+        methods: {
+          hello(val) {
+            console.log('hello '+val+'vue')
+          },
         },
       });
     </script>
